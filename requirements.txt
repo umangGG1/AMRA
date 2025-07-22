@@ -4,7 +4,8 @@ langchain==0.3.7
 langchain-community==0.3.5
 sentence-transformers==3.1.1
 
-# BGE Embeddings
+
+# BGE Embeddings - fallback to sentence-transformers if needed
 FlagEmbedding==1.2.11
 
 # Mistral Integration
@@ -27,3 +28,5 @@ tqdm==4.66.6
 python-json-logger==2.0.7
 pydantic==2.9.2
 requests==2.32.3
+pyarrow==14.0.1
+datasets==2.15.0
