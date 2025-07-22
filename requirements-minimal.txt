@@ -1,0 +1,11 @@
+# Minimal requirements for Streamlit Cloud
+streamlit
+chromadb
+sentence-transformers
+pandas
+numpy
+python-dotenv
+requests
+transformers
+torch
+accelerate

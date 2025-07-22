@@ -13,7 +13,13 @@ from pathlib import Path
 import pandas as pd
 from datetime import datetime
 import numpy as np
-from FlagEmbedding import FlagModel
+
+try:
+    from FlagEmbedding import FlagModel
+    FLAGEMBEDDING_AVAILABLE = True
+except ImportError:
+    FLAGEMBEDDING_AVAILABLE = False
+    from sentence_transformers import SentenceTransformer
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -23,12 +29,16 @@ class BGEEmbeddingFunction:
     
     def __init__(self):
         """Initialize BGE model"""
-        logger.info("Loading BGE-base-en-v1.5 model...")
-        self.model = FlagModel(
-            'BAAI/bge-base-en-v1.5',
-            query_instruction_for_retrieval="Represent this sentence for searching relevant passages: ",
-            use_fp16=True
-        )
+        if FLAGEMBEDDING_AVAILABLE:
+            logger.info("Loading BGE-base-en-v1.5 model with FlagEmbedding...")
+            self.model = FlagModel(
+                'BAAI/bge-base-en-v1.5',
+                query_instruction_for_retrieval="Represent this sentence for searching relevant passages: ",
+                use_fp16=True
+            )
+        else:
+            logger.info("Loading BGE-base-en-v1.5 model with SentenceTransformers...")
+            self.model = SentenceTransformer('BAAI/bge-base-en-v1.5')
         logger.info("BGE model loaded successfully!")
     
     def __call__(self, input: List[str]) -> List[List[float]]:

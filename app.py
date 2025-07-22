@@ -3,6 +3,15 @@ Streamlit Interface for AMRA Healthcare Tender Pricing System
 Interactive web interface for querying tender pricing data using RAG
 """
 
+# Fix SQLite3 compatibility for Streamlit Cloud
+import sqlite3
+import sys
+try:
+    import pysqlite3
+    sys.modules['sqlite3'] = pysqlite3
+except ImportError:
+    pass
+
 import streamlit as st
 import sys
 import os

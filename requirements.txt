@@ -1,5 +1,6 @@
 # Core RAG Dependencies
 chromadb==0.5.15
+pysqlite3-binary
 langchain==0.3.7
 langchain-community==0.3.5
 sentence-transformers==3.1.1
