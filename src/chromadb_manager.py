@@ -428,6 +428,25 @@ class HealthcareChromaManager:
         """Populate all collections with processed data"""
         logger.info(f"Starting to populate {len(self.collection_schemas)} collections with {len(df)} records")
         
+        # Check if collections already have data (skip if populated)
+        all_populated = True
+        for collection_name in self.collection_schemas.keys():
+            try:
+                collection = self.client.get_collection(collection_name)
+                count = collection.count()
+                if count == 0:
+                    all_populated = False
+                    break
+                else:
+                    logger.info(f"Collection {collection_name} already populated with {count} documents")
+            except Exception:
+                all_populated = False
+                break
+        
+        if all_populated:
+            logger.info("All collections already populated, skipping data ingestion")
+            return
+        
         # Log sample data for debugging
         if not df.empty:
             sample_row = df.iloc[0]
