@@ -20,8 +20,10 @@ python-dotenv==1.0.1
 # Web Interface
 streamlit==1.38.0
 streamlit-chat==0.1.1
+plotly==5.17.0
 
 # Utilities
 tqdm==4.66.6
 python-json-logger==2.0.7
 pydantic==2.9.2
+requests==2.32.3
