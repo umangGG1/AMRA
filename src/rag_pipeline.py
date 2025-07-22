@@ -323,7 +323,9 @@ class EnhancedTenderRAGPipeline:
         templates = {
             QueryType.SPECIFIC_PRICING: PromptTemplate(
                 input_variables=["context", "question"],
-                template="""You are an expert healthcare procurement analyst. Analyze the contract data to provide specific pricing information.
+                template="""You are an expert healthcare procurement analyst specializing in the Colombian market. Analyze the contract data to provide specific pricing information.
+
+IMPORTANT: All prices are in Colombian Pesos (COP). Always format monetary values as "COP $XX,XXX,XXX" and never use USD.
 
 CONTRACT DATA:
 {context}
@@ -383,7 +385,9 @@ Response:"""
             
             QueryType.BUDGET_ESTIMATION: PromptTemplate(
                 input_variables=["context", "question"],
-                template="""You are a healthcare budget planning specialist. Use the contract data to provide accurate budget estimates.
+                template="""You are a healthcare budget planning specialist for the Colombian market. Use the contract data to provide accurate budget estimates.
+
+IMPORTANT: All prices are in Colombian Pesos (COP). Format all monetary values as "COP $XX,XXX,XXX" and never use USD.
 
 CONTRACT DATA:
 {context}
@@ -397,8 +401,8 @@ Provide a comprehensive budget estimate:
 4. PLANNING RECOMMENDATIONS: How to prepare the budget
 
 FORMAT AS:
-**Budget Estimate:** $X,XXX - $Y,YYY
-**Recommended Budget:** $Z,ZZZ (includes 15% contingency)
+**Budget Estimate:** COP $X,XXX,XXX - COP $Y,YYY,YYY
+**Recommended Budget:** COP $Z,ZZZ,ZZZ (includes 15% contingency)
 **Based on:** [X] similar contracts
 **Risk Factors:**
 - Risk 1

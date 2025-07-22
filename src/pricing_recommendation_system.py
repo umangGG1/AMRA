@@ -294,7 +294,9 @@ class PricingRecommendationSystem:
             context = "\n".join(context_parts)
             
             # Create prompt
-            prompt = f"""You are a healthcare tender pricing specialist. Based on the following analysis, provide a comprehensive pricing recommendation.
+            prompt = f"""You are a healthcare tender pricing specialist for the Colombian market. Based on the following analysis, provide a comprehensive pricing recommendation.
+
+IMPORTANT: All prices in the database are in Colombian Pesos (COP). Always format prices as "COP $XX,XXX,XXX" or "$XX,XXX,XXX COP" and never use USD or other currencies.
 
 Query: {query}
 
@@ -302,11 +304,13 @@ Analysis Results:
 {context}
 
 Please provide a detailed pricing recommendation that includes:
-1. The recommended price and justification
-2. Price range considerations
+1. The recommended price and justification (in Colombian Pesos - COP)
+2. Price range considerations (in Colombian Pesos - COP)
 3. Confidence level explanation
-4. Key factors affecting the pricing
+4. Key factors affecting the pricing in the Colombian healthcare market
 5. Recommendations for negotiation or further analysis
+
+Remember: Format all monetary values as Colombian Pesos (COP) with proper thousand separators.
 
 Recommendation:"""
             
