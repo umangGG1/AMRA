@@ -9,7 +9,7 @@ FlagEmbedding==1.2.11
 
 # Mistral Integration
 transformers==4.45.2
-torch==2.4.1
+torch>=2.5.0
 accelerate==0.34.2
 
 # Data Processing
