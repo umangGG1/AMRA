@@ -1,0 +1,27 @@
+# Core RAG Dependencies
+chromadb==0.5.15
+langchain==0.3.7
+langchain-community==0.3.5
+sentence-transformers==3.1.1
+
+# BGE Embeddings
+FlagEmbedding==1.2.11
+
+# Mistral Integration
+transformers==4.45.2
+torch==2.4.1
+accelerate==0.34.2
+
+# Data Processing
+pandas==2.2.3
+numpy==1.26.4
+python-dotenv==1.0.1
+
+# Web Interface
+streamlit==1.38.0
+streamlit-chat==0.1.1
+
+# Utilities
+tqdm==4.66.6
+python-json-logger==2.0.7
+pydantic==2.9.2
